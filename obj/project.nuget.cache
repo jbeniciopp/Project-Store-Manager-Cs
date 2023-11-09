@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZRHO9b8gzKCvpsiRoUj2RBM33SKSREHMYHErZneRXL1tJis4izlrpjTF+qReLBOnCN1gYV/HxK6WTdFKBuLpdQ==",
+  "dgSpecHash": "h7Z+KROJOOJT6FzakJAu5f3/YjhguaQpxng2SoaSKSxj6q7eEVVDEsAOZwFfCsEqOF/Vuouxjufl24RzhjCsUw==",
   "success": true,
-  "projectFilePath": "/home/joaob/Projetos-Portifolio/Project-Store-Manager-Cs/ProjectStoreManagerCs.csproj",
+  "projectFilePath": "/home/joaob/Projetos-Portifolio/Project-Store-Manager-Cs/StoreManagerCs.csproj",
   "expectedPackageFiles": [
     "/home/joaob/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/home/joaob/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",

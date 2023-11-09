@@ -3078,9 +3078,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/joaob/Projetos-Portifolio/Project-Store-Manager-Cs/ProjectStoreManagerCs.csproj",
-      "projectName": "ProjectStoreManagerCs",
-      "projectPath": "/home/joaob/Projetos-Portifolio/Project-Store-Manager-Cs/ProjectStoreManagerCs.csproj",
+      "projectUniqueName": "/home/joaob/Projetos-Portifolio/Project-Store-Manager-Cs/StoreManagerCs.csproj",
+      "projectName": "StoreManagerCs",
+      "projectPath": "/home/joaob/Projetos-Portifolio/Project-Store-Manager-Cs/StoreManagerCs.csproj",
       "packagesPath": "/home/joaob/.nuget/packages/",
       "outputPath": "/home/joaob/Projetos-Portifolio/Project-Store-Manager-Cs/obj/",
       "projectStyle": "PackageReference",

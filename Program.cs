@@ -7,11 +7,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Para realizar o deploy deverá decomentar o código abaixo.
-
-// var port = builder.Configuration["PORT"];
-// builder.WebHost.UseUrls($"http://*:{port};http://localhost:3000");
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<StoreManagerCsContext>();
 builder.Services.AddScoped<IStoreManagerCsContext, StoreManagerCsContext>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ISaleRepository, SaleRepository>();
+builder.Services.AddScoped<ISaleProductsRepository, SaleProductsRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

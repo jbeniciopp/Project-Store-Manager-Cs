@@ -30,6 +30,15 @@ namespace StoreManagerCs.Controllers
         [HttpPost]
         public IActionResult PostProduct([FromBody] Product product)
         {
+            if (product.Name == null)
+            {
+                return BadRequest(new { message = "\"name\" is required" });
+            }
+            if (product.Name.Length < 5)
+            {
+                return UnprocessableEntity(new { message = "\"name\" length must be at least 5 characters long" });
+            }
+
             return Created("", _repository.AddProduct(product));
         }
 

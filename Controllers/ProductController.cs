@@ -24,7 +24,15 @@ namespace StoreManagerCs.Controllers
         [HttpGet("{ProductId}")]
         public IActionResult GetProductById(int ProductId)
         {
-            return Ok(_repository.GetProductById(ProductId));
+            var request = _repository.GetProductById(ProductId);
+
+            ProductDto response = new()
+            {
+                ProductId = request.ProductId,
+                Name = request.Name
+            };
+
+            return Ok(response);
         }
 
         [HttpPost]

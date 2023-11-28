@@ -57,13 +57,13 @@ namespace StoreManagerCs.Controllers
             {
                 var cadrastedProduct = _repositoryProducts.GetProductById(product[i].ProductId);
 
-                Product saleProduct = new()
-                {
-                    ProductId = cadrastedProduct.ProductId,
-                    Name = cadrastedProduct.Name
-                };
+                // Product saleProduct = new()
+                // {
+                //     ProductId = cadrastedProduct.ProductId,
+                //     Name = cadrastedProduct.Name
+                // };
 
-                _repositorySaleProducts.AddSaleProducts(sale, saleProduct, product[i].Quantity);
+                _repositorySaleProducts.AddSaleProducts(sale, cadrastedProduct, product[i].Quantity);
 
                 CreateSaleDto createSaleDto = new()
                 {

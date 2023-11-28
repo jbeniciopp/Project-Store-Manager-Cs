@@ -25,17 +25,13 @@ namespace StoreManagerCs.Repository
             return allProducts;
         }
 
-        public ProductDto GetProductById(int ProductId)
+        public Product GetProductById(int ProductId)
         {
             var products = _context.Products;
             
             var response = (from product in products
                             where product.ProductId == ProductId
-                            select new ProductDto
-                            {
-                                ProductId = product.ProductId,
-                                Name = product.Name
-                            }).ToList();
+                            select product).ToList();
 
             return response.FirstOrDefault();
         }

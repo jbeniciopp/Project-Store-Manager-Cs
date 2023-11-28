@@ -6,7 +6,7 @@ namespace StoreManagerCs.Repository
     public interface IProductRepository
     {
         List<ProductDto> GetProducts();
-        ProductDto GetProductById(int ProductId);
+        Product GetProductById(int ProductId);
         ProductDto AddProduct(Product product);
         ProductDto UpdateProduct(Product product);
         void DeleteProduct(int ProductId);

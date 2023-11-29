@@ -25,5 +25,12 @@ namespace StoreManagerCs.Repository
 
             return newSale;
         }
+
+        public List<Sale> GetSales()
+        {
+            var sales = _context.Sales.ToList();
+
+            return sales;
+        }
     }
 }

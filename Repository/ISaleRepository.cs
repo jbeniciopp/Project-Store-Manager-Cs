@@ -6,5 +6,6 @@ namespace StoreManagerCs.Repository
     public interface ISaleRepository
     {
         Sale AddSale();
+        List<Sale> GetSales();
     }
 }

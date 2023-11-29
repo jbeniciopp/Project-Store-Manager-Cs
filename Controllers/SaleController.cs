@@ -24,11 +24,11 @@ namespace StoreManagerCs.Controllers
         {
             for (int i = 0; i < product.Count; i++)
             {
-                if (product[i].ProductId == null)
+                if (product[i].ProductId == 0)
                 {
                     return BadRequest(new { message = "\"productId\" is required" });
                 }
-                if (product[i].Quantity == null)
+                if (product[i].Quantity == 0)
                 {
                     return BadRequest(new { message = "\"quantity\" is required" });
                 }
@@ -57,17 +57,12 @@ namespace StoreManagerCs.Controllers
             {
                 var cadrastedProduct = _repositoryProducts.GetProductById(product[i].ProductId);
 
-                // Product saleProduct = new()
-                // {
-                //     ProductId = cadrastedProduct.ProductId,
-                //     Name = cadrastedProduct.Name
-                // };
-
                 _repositorySaleProducts.AddSaleProducts(sale, cadrastedProduct, product[i].Quantity);
 
                 CreateSaleDto createSaleDto = new()
                 {
                     ProductId = product[i].ProductId,
+                    Name = cadrastedProduct.Name,
                     Quantity = product[i].Quantity
                 };
 
@@ -75,6 +70,41 @@ namespace StoreManagerCs.Controllers
             }
 
             return Created("", response);
+        }
+
+        [HttpGet]
+        public IActionResult GetSales()
+        {
+            var sales = _repositorySale.GetSales();
+
+            var response = new List<ResponseSaleDto>();
+
+            for (int i = 0; i < sales.Count; i++)
+            {
+                ResponseSaleDto sale = new()
+                {
+                    SaleId = sales[i].SaleId,
+                    ItemsSold = new List<CreateSaleDto>()
+                };
+
+                var products = _repositorySaleProducts.GetSaleProductsBySaleId(sale.SaleId);
+
+                for (int idx = 0; idx < products.Count; idx++)
+                {
+                    CreateSaleDto productDto = new()
+                    {
+                        ProductId = products[idx].Product?.ProductId ?? 0,
+                        Name = products[idx].Product?.Name,
+                        Quantity = products[idx].Quantity
+                    };
+
+                    sale.ItemsSold.Add(productDto);
+                }
+
+                response.Add(sale);
+            }
+
+            return Ok(response);
         }
     }
 }

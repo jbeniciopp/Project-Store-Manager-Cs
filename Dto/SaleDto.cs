@@ -3,6 +3,7 @@ namespace StoreManagerCs.Dto
     public class CreateSaleDto
     {
         public int ProductId { get; set; }
+        public string? Name { get; set; }
         public int Quantity { get; set; }
     }
 

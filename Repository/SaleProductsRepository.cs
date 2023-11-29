@@ -1,5 +1,6 @@
 using StoreManagerCs.Models;
 using StoreManagerCs.Dto;
+using Microsoft.EntityFrameworkCore;
 
 namespace StoreManagerCs.Repository
 {
@@ -26,6 +27,17 @@ namespace StoreManagerCs.Repository
             _context.SaveChanges();
 
             return newSaleProduct;
+        }
+
+        public List<SaleProduct> GetSaleProductsBySaleId(int saleId)
+        {
+            var salesProducts = _context.SaleProducts
+                .Include(sp => sp.Sale)
+                .Include(sp => sp.Product)
+                .Where(sp => sp.Sale != null && sp.Sale.SaleId == saleId)
+                .ToList();
+
+            return salesProducts;
         }
     }
 }

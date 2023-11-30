@@ -26,6 +26,21 @@ namespace StoreManagerCs.Repository
             return newSale;
         }
 
+        public void DeleteSale(int SaleId)
+        {
+            var sales = _context.Sales;
+
+            var sale = sales.Where(s => s.SaleId == SaleId).ToList();
+            
+            if (sale.Count == 0)
+            {
+                throw new System.Exception();
+            }
+
+            sales.Remove(sale.First());
+            _context.SaveChanges();
+        }
+
         public List<Sale> GetSales()
         {
             var sales = _context.Sales.ToList();

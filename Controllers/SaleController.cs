@@ -106,5 +106,24 @@ namespace StoreManagerCs.Controllers
 
             return Ok(response);
         }
+
+        [HttpDelete("{SaleId}")]
+        public IActionResult DeleteSale(int SaleId)
+        {
+            try
+            {
+                _repositorySaleProducts.DeleteSales(SaleId);
+                _repositorySale.DeleteSale(SaleId);
+
+                return NoContent();
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                return BadRequest();
+                throw;
+            }
+        }
     }
 }

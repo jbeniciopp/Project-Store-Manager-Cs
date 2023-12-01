@@ -107,6 +107,39 @@ namespace StoreManagerCs.Controllers
             return Ok(response);
         }
 
+        [HttpGet("{SaleId}")]
+        public IActionResult GetSaleById(int SaleId)
+        {
+            var sale = _repositorySale.GetSaleById(SaleId);
+
+            if (sale == null)
+            {
+                return NotFound();
+            }
+
+            ResponseSaleDto response = new()
+            {
+                SaleId = SaleId,
+                ItemsSold = new List<CreateSaleDto>()
+            };
+
+            var products = _repositorySaleProducts.GetSaleProductsBySaleId(SaleId);
+
+            for (int idx = 0; idx < products.Count; idx++)
+            {
+                CreateSaleDto productDto = new()
+                {
+                    ProductId = products[idx].Product?.ProductId ?? 0,
+                    Name = products[idx].Product?.Name,
+                    Quantity = products[idx].Quantity
+                };
+
+                response.ItemsSold.Add(productDto);
+            }
+
+            return Ok(response);
+        }
+
         [HttpDelete("{SaleId}")]
         public IActionResult DeleteSale(int SaleId)
         {

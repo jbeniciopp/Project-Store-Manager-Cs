@@ -47,5 +47,14 @@ namespace StoreManagerCs.Repository
 
             return sales;
         }
+
+        public Sale GetSaleById(int SaleId)
+        {
+            var sales = _context.Sales;
+
+            var sale = sales.Where(s => s.SaleId == SaleId).ToList();
+
+            return sale.FirstOrDefault();
+        }
     }
 }

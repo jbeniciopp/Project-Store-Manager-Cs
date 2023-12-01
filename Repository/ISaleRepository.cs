@@ -7,6 +7,7 @@ namespace StoreManagerCs.Repository
     {
         Sale AddSale();
         List<Sale> GetSales();
+        Sale GetSaleById(int SaleId);
         void DeleteSale(int saleId);
     }
 }

@@ -150,11 +150,61 @@ namespace StoreManagerCs.Controllers
 
                 return NoContent();
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                Console.WriteLine(ex);
-
                 return BadRequest();
+                throw;
+            }
+        }
+
+        [HttpPut]
+        public IActionResult PutSale([FromBody] ResponseSaleDto sale)
+        {
+            try
+            {
+                var ItemsSold = sale.ItemsSold;
+                
+                for (int i = 0; i < ItemsSold.Count; i++)
+                {
+                    if (ItemsSold[i].ProductId == 0)
+                    {
+                        return BadRequest(new { message = "\"productId\" is required" });
+                    }
+                    if (ItemsSold[i].Quantity == 0)
+                    {
+                        return BadRequest(new { message = "\"quantity\" is required" });
+                    }
+                    if (ItemsSold[i].Quantity <= 0)
+                    {
+                        return UnprocessableEntity(new { message = "\"quantity\" must be greater than or equal to 1" });
+                    }
+
+                    var cadrastedProduct = _repositoryProducts.GetProductById(ItemsSold[i].ProductId);
+                    
+                    if (cadrastedProduct == null)
+                    {
+                        return NotFound(new { message = "Product not found" });
+                    }
+                }
+                
+                _repositorySaleProducts.DeleteSales(sale.SaleId);
+
+                var oldSale = _repositorySale.GetSaleById(sale.SaleId);
+
+                for (int i = 0; i < ItemsSold.Count; i++)
+                {
+                    var cadrastedProduct = _repositoryProducts.GetProductById(ItemsSold[i].ProductId);
+
+                    sale.ItemsSold[i].Name = cadrastedProduct.Name;
+
+                    _repositorySaleProducts.AddSaleProducts(oldSale, cadrastedProduct, ItemsSold[i].Quantity);
+                }                
+
+                return Ok(sale);
+            }
+            catch (System.Exception)
+            {
+                return NotFound(new { message = "Sale not found" });
                 throw;
             }
         }

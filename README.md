@@ -162,12 +162,12 @@
 [
   {
     "productId": 1,
-    "name": "PC Gamer", // Opicional
+    "name": "PC Gamer", // Opcional
     "quantity": 3
   },
   {
     "productId": 2,
-    "name": "PC Home Office", // Opicional
+    "name": "PC Home Office", // Opcional
     "quantity": 5
   }
 ]
@@ -201,7 +201,7 @@
   "itemsSold": [
     {
       "productId": 3,
-      "name": "Notebook Gamer", // Opicional
+      "name": "Notebook Gamer", // Opcional
       "quantity": 10
     }
   ]
